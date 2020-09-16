@@ -10,7 +10,7 @@ exports.interview = function(request, response) {
 
     // helper to append a new "Say" verb with alice voice
     function say(text) {
-        twiml.say({ voice: 'alice'}, text);
+        twiml.say({ voice: 'Polly.Brian'}, text);
     }
 
     // respond with the current TwiML content
