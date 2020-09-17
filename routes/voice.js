@@ -13,6 +13,10 @@ exports.interview = function(request, response) {
         twiml.say({ voice: 'Polly.Brian'}, text);
     }
 
+    function pause(seconds=1) {
+        twiml.pause({length: seconds});
+    }
+
     // respond with the current TwiML content
     function respond() {
         response.type('text/xml');
@@ -43,8 +47,13 @@ exports.interview = function(request, response) {
         if (questionIndex === 0) {
             // say('Thank you for taking our survey. Please listen carefully '
             //     + 'to the following questions.');
-            say('Hi I am Brian and I wil be chatting with you today.');
+            say('Hi. Thank you for reaching out.');
+            say('I am Brian and I wil be chatting with you today.');
+            pause();
             say('There is one logistic to get it out of the way. Once you are done with each question, Please press any key to continue.');
+            pause(2);
+            say('Let us get started.');
+            pause();
         }
 
         // Otherwise, ask the next question
@@ -59,7 +68,8 @@ exports.interview = function(request, response) {
                 transcribe: true,
                 transcribeCallback: '/voice/' + surveyResponse._id
                     + '/transcribe/' + questionIndex,
-                maxLength: 60
+                maxLength: 60,
+                playBeep: 0
             });
         } else if (question.type === 'boolean') {
             say('Press one for "yes", and any other key for "no".');
