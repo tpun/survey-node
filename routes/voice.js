@@ -34,14 +34,17 @@ exports.interview = function(request, response) {
 
         // If question is null, we're done!
         if (!question) {
-            say('Thank you for taking this survey. Goodbye!');
+            // say('Thank you for taking this survey. Goodbye!');
+            say ('Thank you for your time again and we will be in touch shortly.');
             return respond();
         }
 
         // Add a greeting if this is the first question
         if (questionIndex === 0) {
-            say('Thank you for taking our survey. Please listen carefully '
-                + 'to the following questions.');
+            // say('Thank you for taking our survey. Please listen carefully '
+            //     + 'to the following questions.');
+            say('Hi I am Brian and I wil be chatting with you today.');
+            say('There is one logistic to get it out of the way. Once you are done with each question, Please press any key to continue.');
         }
 
         // Otherwise, ask the next question
@@ -50,8 +53,8 @@ exports.interview = function(request, response) {
         // Depending on the type of question, we either need to get input via
         // DTMF tones or recorded speech
         if (question.type === 'text') {
-            say('Please record your response after the beep. '
-                + 'Press any key to finish.');
+            // say('Please record your response after the beep. '
+            //     + 'Press any key to finish.');
             twiml.record({
                 transcribe: true,
                 transcribeCallback: '/voice/' + surveyResponse._id
